@@ -216,8 +216,14 @@ ifeq ($(CONFIG_USB2_EXTERNAL_POWER), y)
 EXTRA_CFLAGS += -DCONFIG_USE_EXTERNAL_POWER
 endif
 
+REDHAT_DISTRO := $(shell cut -f1 -d" " /etc/redhat-release )
+ifeq ($(REDHAT_DISTRO), CentOS)
 REDHAT_VER := $(shell cut -f4 -d" " /etc/redhat-release |cut -d"." -f1,2 )
-ifeq ($(REDHAT_VER), 7.6)
+endif
+ifeq ($(REDHAT_DISTRO), Red)
+REDHAT_VER := $(shell cut -f7 -d" " /etc/redhat-release |cut -d"." -f1,2 )
+endif
+ifeq ($(REDHAT_VER), 7.6 7.7 7.8)
 EXTRA_CFLAGS += -DREDHAT_76
 endif
 
