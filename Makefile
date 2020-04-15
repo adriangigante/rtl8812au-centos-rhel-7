@@ -223,7 +223,7 @@ endif
 ifeq ($(REDHAT_DISTRO), Red)
 REDHAT_VER := $(shell cut -f7 -d" " /etc/redhat-release |cut -d"." -f1,2 )
 endif
-ifeq ($(REDHAT_VER), 7.6 7.7 7.8)
+ifeq ($(REDHAT_VER), $(filter $(REDHAT_VER),7.6 7.7 7.8))
 EXTRA_CFLAGS += -DREDHAT_76
 endif
 
