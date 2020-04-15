@@ -1,6 +1,8 @@
-forked from aircrack-ng/rtl8812au.modified for Centos 7.6.   
-the kernel`s version of Centos 7.6 is 3.10,but backported many 4.x code.  
-added condition flags for 4.x code,mainly on cfg80211 and wifi.  
+## Forks
+
+Forked from cccooo/rtl8812au-centos-7.6
+- Updated Makefile to compile on RHEL/CentOS 7.6.7.8
+- Added further instruction on how to install the driver
 
 ## RTL8812AU/21AU and RTL8814AU drivers
 ## with monitor mode and frame injection
@@ -33,10 +35,32 @@ make
 make install
 ```
 
+### Add module
+Add module to the kernel
+```
+modprobe 88XXau
+```
+Done!
+Your wireless device should be up & running. You can check you logs with
+```
+smesg
+```
+and expect something like this
+```
+[ 4854.663662] 88XXau: loading out-of-tree module taints kernel.
+[ 4854.694921] 88XXau: module verification failed: signature and/or required key missing - tainting kernel
+[ 4854.781005] usbcore: registered new interface driver rtl88xxau
+[ 4854.795396] IPv6: ADDRCONF(NETDEV_UP): wlp0s20f0u13: link is not ready
+[ 4855.062479] IPv6: ADDRCONF(NETDEV_UP): wlp0s20f0u13: link is not ready
+[ 4855.064963] IPv6: ADDRCONF(NETDEV_UP): wlp0s20f0u13: link is not ready
+[ 4855.077320] IPv6: ADDRCONF(NETDEV_UP): wlp0s20f0u13: link is not ready
+[ 5199.941756] IPv6: ADDRCONF(NETDEV_UP): wlp0s20f0u13: link is not ready
+```
+
 ### Notes
 Download
 ```
-git clone -b v5.3.4 https://github.com/aircrack-ng/rtl8812au.git
+git clone https://github.com/adriangigante/rtl8812au-centos-rhel-7.git
 cd rtl*
 ```
 Package / Build dependencies (Kali)
